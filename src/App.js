@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import React from "react";
+import {useState, useEffect} from "react";
+import { AgGridReact } from "ag-grid-react";
+import 'ag-grid-community/styles/ag-grid.css'
+import 'ag-grid-community/styles/ag-theme-material.css'
 import './App.css';
 
 function App() {
+  const [gloves, setGloves] = useState([]);
+
+
+  useEffect(() => {
+    fetch("http://localhost:8080/api/gloveses")
+    .then(response => response.json())
+    .then(data => setGloves(data._embedded.gloveses))
+    .catch(err => console.error(err))
+  }, [])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
     </div>
   );
 }
